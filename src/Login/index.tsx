@@ -1,16 +1,31 @@
+import { useCallback, useState } from "react";
 import "./style.css"
 
-export default function Login() {
+ const Login: React.FC = () => {
+  const [usernama, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = useCallback((event:any) => {
+      event.preventDefault();
+      console.log(usernama, password);
+  },[usernama, password])
+
   return (
-    <form action="" className="container">
+    <form  className="container" onSubmit={handleSubmit} >
         <div className="form-group">
             <label htmlFor="">Usuário</label>
-            <input type="text" />
+            <input 
+              type="text" 
+              onChange={(event) => setUsername(event.target.value)} 
+            />
         </div>
 
         <div className="form-group">
             <label htmlFor="">Senha</label>
-            <input type="password" />
+            <input 
+              type="password"
+              onChange={(event) => setPassword(event.target.value)} 
+              />
         </div>
 
         <div className="form-group">
@@ -19,3 +34,5 @@ export default function Login() {
     </form>
   )
 }
+
+export default Login;
